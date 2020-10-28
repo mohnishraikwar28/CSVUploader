@@ -7,7 +7,6 @@ function App(props) {
   const [columns, setColumns] = useState([]);
   const [data, setData] = useState([]);
   
-  // process CSV data
   const processData = dataString => {
     const dataStringLines = dataString.split(/\r\n|\n/);
     const headers = dataStringLines[0].split(/,(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/);
@@ -30,14 +29,12 @@ function App(props) {
           }
         }
   
-        // remove the blank rows
         if (Object.values(obj).filter(x => x).length > 0) {
           list.push(obj);
         }
       }
     }
     
-    // prepare columns list from headers
     const columns = headers.map(c => ({
       name: c,
       selector: c,
@@ -47,7 +44,6 @@ function App(props) {
     setColumns(columns);
   }
   
-  // handle file upload
   const handleFileUpload = e => {
     const file = e.target.files[0];
     const reader = new FileReader();
